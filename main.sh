@@ -88,23 +88,17 @@ deleteUser()
 	fi
  
 }
- 
-clear
-echo "MENU"
-echo ""
-echo "1) Create User"
-echo "2) Modify User"
-echo "3) Delete User"
-echo "4) Exit"
- 
-read answer
- 
-case "$answer" in
-	1) createUser;;
-	2) modUser;;
-	3) deleteUser;;
-	4) exit;;
-esac
-Report this snippet
 
+title="Menu"
+prompt="Pick an option:"
+options=("Create User" "Modify User" "Delete User")
+
+while opt=$(zenity --title="$title" --text="$prompt" --list  --column="Options"  "${options[@]}"); do
+    case "$opt" in
+    "${options[0]}" ) createUser;;
+    "${options[1]}" ) modUser;;
+    "${options[2]}" ) deleteUser;;
+    esac
+
+done
 
