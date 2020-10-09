@@ -27,16 +27,16 @@ createUser()
 
 			echo 100
 			echo "# Done!"
-		) | zenity --title "Progress bar example" --progress --auto-kill
+		) | zenity --title "Progress bar example" --progress --auto-kill --width=250 --height=150
 
 		clear
 		comment=$(zenity --entry --width=400 --height=200 --title "Enter a comment for $name");
 		sudo useradd -c "$comment" -m -s /bin/bash $name
 
-		$(zenity --info --text "User created!");
+		$(zenity --info --width=200 --height=100 --text "User created!");
 		less /etc/passwd | grep $name 
 
-		$(zenity --info --text "Please supply a password for $name");
+		$(zenity --info --width=200 --height=100 --text "Please supply a password for $name");
 		sudo passwd $name
 	fi
 }
@@ -44,7 +44,7 @@ createUser()
 modUser()
 {
 	clear
-	modName=$(zenity --entry --title "Which user would you like to modify?");
+	modName=$(zenity --entry --title "Which user would you like to modify?" --width=330 --height=150);
  
 	$GREP -i $modName /etc/passwd
  
@@ -96,7 +96,7 @@ deleteUser()
 
 				echo 100
 				echo "# $delName deleted!"
-			) | zenity --title "Deleteing user" --progress --auto-kill
+			) | zenity --title "Deleteing user" --progress --auto-kill --width=250 --height=150
 		fi
 	else
 		echo "$delName does not exist!"
